@@ -31,7 +31,7 @@ export const addCourse = async (req, res) => {
 export const getSingleCourse = async (req, res) => {
   try {
     const course = await Course.findById(req.params.id);
-
+     console.log(course)
     if (!course) {
       return res.status(404).json({
         success: false,
@@ -45,6 +45,7 @@ export const getSingleCourse = async (req, res) => {
     });
 
   } catch (error) {
+    
     res.status(500).json({
       success: false,
       message: error.message,
@@ -80,7 +81,7 @@ export const updateCourse = async (req, res) => {
 
     if (req.file) {
       await cloudinary.uploader.destroy(course.public_id, {
-        resource_type: "raw",
+        resource_type: "video",
       });
       course.video = req.file.path;
       course.public_id = req.file.filename;
@@ -114,7 +115,7 @@ export const deletecourse = async (req, res) => {
     }
 
     await cloudinary.uploader.destroy(course.public_id, {
-      resource_type: "raw",
+      resource_type: "video",
     });
     await Course.findByIdAndDelete(req.params.id);
 

@@ -27,7 +27,11 @@ app.use('/api', notesRoute)
 import courseRoute from './Server/Routes/courseRoute.js'
 app.use('/api', courseRoute)
 
+import blogRoute from './Server/Routes/blogRoute.js'
+app.use('/api', blogRoute)
 
+import contactRoute from './Server/Routes/contactRoute.js'
+app.use('/api', contactRoute)
 
 app.listen(3000, ()=> {
     console.log(`Server is running on http://localhost:${port}`)
